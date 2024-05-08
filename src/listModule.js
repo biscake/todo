@@ -1,20 +1,29 @@
-let allList = Array();
+// let allList = Array();
+import { projectsController } from "./projectController";
 
-const listArray = (function() {
+const currentProject = (function () {
     const addList = (list) => {
-        allList.push(list);
-    }
+        projectsController.current().push(list);
+        updateToDoId();
+    };
 
     const deleteList = (listId) => {
-        allList.splice(listId, 1);
-    }
+        projectsController.current().splice(listId, 1);
+        updateToDoId();
+    };
     return {
         addList,
         deleteList,
-    }
+    };
 })();
 
-const List = (function() {
+function updateToDoId() {
+    projectsController.current().forEach((list, index) => {
+        list.id = index;
+    });
+}
+
+const toDo = (function () {
     class toDoList {
         constructor(title, description, dueDate, priority) {
             this.title = title;
@@ -22,7 +31,7 @@ const List = (function() {
             this.dueDate = dueDate;
             this.priority = priority;
         }
-        
+
         editTitle(newTitle) {
             this.title = newTitle;
         }
@@ -38,22 +47,21 @@ const List = (function() {
         editPriority(newPriority) {
             this.priority = newPriority;
         }
-        
     }
     const createList = (title, description, dueDate, priority) => {
-        listArray.addList(new toDoList(title, description, dueDate, priority));
-    }
+        currentProject.addList(
+            new toDoList(title, description, dueDate, priority)
+        );
+    };
 
-    const deleteList = (listId) => listArray.deleteList(listId);
+    const deleteList = (listId) => currentProject.deleteList(listId);
 
     return {
         createList,
         deleteList,
-    }
+    };
 })();
 
+export default toDo;
 
-
-export default List;
-
-export { allList };
+export { currentProject, projectsController };
