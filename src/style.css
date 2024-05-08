@@ -1,0 +1,5 @@
+.editBtn {
+    width: 2rem;
+    height: 2rem;
+    background-image: url(./assets/pencil.svg);
+}
