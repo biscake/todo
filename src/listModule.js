@@ -2,24 +2,24 @@
 import { projectsController } from "./projectController";
 
 const currentProject = (function () {
-    const addList = (list) => {
-        projectsController.current().push(list);
+    const addToCurrent = (toDo) => {
+        projectsController.current().push(toDo);
         updateToDoId();
     };
 
-    const deleteList = (listId) => {
-        projectsController.current().splice(listId, 1);
+    const deleteFromCurrent = (toDoId) => {
+        projectsController.current().splice(toDoId, 1);
         updateToDoId();
     };
     return {
-        addList,
-        deleteList,
+        addToCurrent,
+        deleteFromCurrent,
     };
 })();
 
 function updateToDoId() {
-    projectsController.current().forEach((list, index) => {
-        list.id = index;
+    projectsController.current().forEach((toDo, index) => {
+        toDo.id = index;
     });
 }
 
@@ -48,17 +48,17 @@ const toDo = (function () {
             this.priority = newPriority;
         }
     }
-    const createList = (title, description, dueDate, priority) => {
-        currentProject.addList(
+    const createToDo = (title, description, dueDate, priority) => {
+        currentProject.addToCurrent(
             new toDoList(title, description, dueDate, priority)
         );
     };
 
-    const deleteList = (listId) => currentProject.deleteList(listId);
+    const deleteToDo = (listId) => currentProject.deleteFromCurrent(listId);
 
     return {
-        createList,
-        deleteList,
+        createToDo,
+        deleteToDo,
     };
 })();
 
