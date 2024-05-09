@@ -32,21 +32,28 @@ const toDo = (function () {
             this.priority = priority;
         }
 
-        editTitle(newTitle) {
+        updateToDo(newTitle, newDescription, newDueDate, newPriority) {
             this.title = newTitle;
-        }
-
-        editDescription(newDescription) {
             this.description = newDescription;
-        }
-
-        editDueDate(newDueDate) {
             this.dueDate = newDueDate;
-        }
-
-        editPriority(newPriority) {
             this.priority = newPriority;
         }
+
+        // editTitle(newTitle) {
+        //     this.title = newTitle;
+        // }
+
+        // editDescription(newDescription) {
+        //     this.description = newDescription;
+        // }
+
+        // editDueDate(newDueDate) {
+        //     this.dueDate = newDueDate;
+        // }
+
+        // editPriority(newPriority) {
+        //     this.priority = newPriority;
+        // }
     }
     const createToDo = (title, description, dueDate, priority) => {
         currentProject.addToCurrent(
@@ -64,4 +71,4 @@ const toDo = (function () {
 
 export default toDo;
 
-export { currentProject, projectsController };
+export { projectsController };
