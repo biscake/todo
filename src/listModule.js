@@ -30,6 +30,7 @@ const toDo = (function () {
             this.description = description;
             this.dueDate = dueDate;
             this.priority = priority;
+            this.done = false;
         }
 
         updateToDo(newTitle, newDescription, newDueDate, newPriority) {
@@ -39,21 +40,9 @@ const toDo = (function () {
             this.priority = newPriority;
         }
 
-        // editTitle(newTitle) {
-        //     this.title = newTitle;
-        // }
-
-        // editDescription(newDescription) {
-        //     this.description = newDescription;
-        // }
-
-        // editDueDate(newDueDate) {
-        //     this.dueDate = newDueDate;
-        // }
-
-        // editPriority(newPriority) {
-        //     this.priority = newPriority;
-        // }
+        toggleDone() {
+            this.done = !this.done;
+        }
     }
     const createToDo = (title, description, dueDate, priority) => {
         currentProject.addToCurrent(
